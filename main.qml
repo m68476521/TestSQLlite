@@ -4,10 +4,11 @@ import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
 
 ApplicationWindow {
-    title: qsTr("Hello World")
+    title: qsTr("TestSQLlite v0.1")
     width: 640
     height: 480
     visible: true
+    color: "#1abc9c"
 
     menuBar: MenuBar {
         Menu {
