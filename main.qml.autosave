@@ -127,4 +127,21 @@ ApplicationWindow {
             }
         });
     }
+    function removeItemDB (name, lastName){
+        print("remove Items DB")
+           var db = LocalStorage.openDatabaseSync("MyExample","1.0", "Example Database", 10000);
+        if (!db) { return; }
+        db.transaction( function(tx) {
+            print("checking if notes exists")
+            var result = tx.executeSql('select * from notes where name = "' +name+'"')
+            if (result === 1 ) {
+                print ("updating")
+                result = tx.executeSql('UPDATE notes set lastName ? where name = "' +name+'"', [lastName])
+//                textField1.text = "mike"
+            }else {
+                print("Insert into DB ..")
+                result = tx.executeSql('INSERT into notes values (?, ?)', [name, lastName])
+            }
+        });
+    }
 }
