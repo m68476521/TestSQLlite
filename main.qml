@@ -43,13 +43,16 @@ ApplicationWindow {
                 anchors.fill =  parent
                 root.color= Qt.hsla(Math.random(), 0.5, 0.5, 1.0)
             }
+            var response = projectingDB(textField1.text)
+            textField3.text = response
 
         }
         button2.onClicked:  {
             initializeDB()
             projectingDB()
-            var completeName = projectingDB(textField1.text)
-            textField3 = completeName
+//            var completeName = projectingDB(textField1.text)
+//            textField3 = completeName
+            removeItemDB(textField1.text)
 
         }
 
@@ -105,6 +108,7 @@ ApplicationWindow {
                   print("name: "+ name + " , lastName: " +lastName)
                   var completeName = name + " - " + lastName
                    return completeName
+//                   break
                }
            });
        }
@@ -124,6 +128,20 @@ ApplicationWindow {
             }else {
                 print("Insert into DB ..")
                 result = tx.executeSql('INSERT into notes values (?, ?)', [name, lastName])
+            }
+        });
+    }
+    function removeItemDB (name){
+        print("remove Items DB")
+           var db = LocalStorage.openDatabaseSync("MyExample","1.0", "Example Database", 10000);
+        if (!db) { return; }
+        db.transaction( function(tx) {
+            print("checking if notes exists")
+            var result = tx.executeSql('select * from notes where name = "' +name+'"')
+            if (result > 1 ) {
+                print ("deleting: "+name)
+                result = tx.executeSql('DELETE form notes where name = "' +name+'"')
+//                textField1.text = "mike"
             }
         });
     }

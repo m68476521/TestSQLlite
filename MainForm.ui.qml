@@ -9,9 +9,9 @@ Item {
     property alias button3: button3
     property alias button2: button2
     property alias button1: button1
-    property alias textField1: textField1
-    property alias textField2: textField2
-    property alias textField3: textField3
+    property alias textField1: textField1.text
+    property alias textField2: textField2.text
+    property alias textField3: textField3.text
 
     RowLayout {
         id: rowLayout
@@ -66,8 +66,8 @@ Item {
             id: textField3
             x: 299
             y: 315
-
-            placeholderText: qsTr("Text Field")
+            text: "Result "
+//            placeholderText: qsTr("Result")
         }
     }
 
