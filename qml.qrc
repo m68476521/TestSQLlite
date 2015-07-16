@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>MainForm.ui.qml</file>
         <file>SaveProfile.qml</file>
+        <file>textFieldBasic.qml</file>
     </qresource>
 </RCC>
